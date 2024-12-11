@@ -1,0 +1,102 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Status Comparison</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h2>Certificate Status Comparison Graphs</h2>
+
+     
+    <div class="chart-container">
+        <canvas id="casteChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="incomeChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="ewsChart"></canvas>
+    </div>
+
+    <script>
+         
+        const state1Data = <%= JSON.stringify(state1Data) %>;
+        const state2Data = <%= JSON.stringify(state2Data) %>;
+
+        console.log('State 1 Data:', state1Data);
+        console.log('State 2 Data:', state2Data);
+
+         
+        function createBarChart(chartId, labels, state1Values, state2Values) {
+            const ctx = document.getElementById(chartId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels, 
+                    datasets: [
+                        {
+                            label: 'State 1',
+                            data: state1Values,  
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',   
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1,
+                        },
+                        {
+                            label: 'State 2',
+                            data: state2Values,  
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',  
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
+        }
+
+        createBarChart(
+            'casteChart',
+            ['Pending', 'Accepted', 'Rejected'],
+            [state1Data.caste.pending, state1Data.caste.accepted, state1Data.caste.rejected],
+            [state2Data.caste.pending, state2Data.caste.accepted, state2Data.caste.rejected]
+        );
+
+         
+        createBarChart(
+            'incomeChart',
+            ['Pending', 'Accepted', 'Rejected'],
+            [state1Data.income.pending, state1Data.income.accepted, state1Data.income.rejected],
+            [state2Data.income.pending, state2Data.income.accepted, state2Data.income.rejected]
+        );
+
+      
+        createBarChart(
+            'ewsChart',
+            ['Pending', 'Accepted', 'Rejected'],
+            [state1Data.ews.pending, state1Data.ews.accepted, state1Data.ews.rejected],
+            [state2Data.ews.pending, state2Data.ews.accepted, state2Data.ews.rejected]
+        );
+    </script>
+</body>
+</html> -->

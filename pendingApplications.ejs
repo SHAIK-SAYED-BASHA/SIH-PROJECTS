@@ -1,0 +1,73 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Applications</title>
+    <script>
+        // Function to enable the "Mark as Completed" button if scanning is completed
+        window.onload = function() {
+            // Check if scanning is completed
+            if (sessionStorage.getItem('scanningCompleted') === 'true') {
+                // Enable the "Mark as Completed" buttons
+                const buttons = document.querySelectorAll('.mark-completed-btn');
+                buttons.forEach(button => {
+                    button.disabled = false; // Enable all buttons
+                });
+                // Clear the session storage flag after use
+                sessionStorage.removeItem('scanningCompleted');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Pending Applications</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>Email</th>
+                <th>Certificate Type</th>
+                <th>Request Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (users.length === 0) { %>
+                <tr>
+                    <td colspan="5">No pending applications found.</td>
+                </tr>
+            <% } else { %>
+                <% users.forEach(user => { %>
+                    <% ['casteApplication', 'incomeApplication', 'ewsApplication'].forEach(app => { %>
+                        <% if (user[app]?.status === 'Pending') { %>
+                            <tr>
+                                <td><%= user.name %></td>
+                                <td><%= user.email %></td>
+                                <td>
+                                    <%= app === 'casteApplication' ? 'Caste Certificate' : '' %>
+                                    <%= app === 'incomeApplication' ? 'Income Certificate' : '' %>
+                                    <%= app === 'ewsApplication' ? 'EWS Certificate' : '' %>
+                                </td>
+                                <td><%= user[app].requestDate.toISOString().slice(0, 10) %></td>
+                                <td>
+                                    <a href="/admin/verify-documents/<%= user._id %>">Verify Documents</a>
+                                    <!-- Mark as Completed Button -->
+                                    <form method="POST" action="/admin/mark-completed">
+                                        <input type="hidden" name="userId" value="<%= user._id %>">
+                                        <input type="hidden" name="applicationType" value="<%= app %>">
+                                        <button type="submit" class="mark-completed-btn" disabled>
+                                            Mark as Completed
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }) %>
+                <% }) %>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html

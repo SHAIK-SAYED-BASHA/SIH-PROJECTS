@@ -1,0 +1,79 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphical Layout</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Graphical Representation of Certificate Status</h2>
+        <canvas id="stateChart"></canvas>
+        <canvas id="mandalChart"></canvas>
+        <canvas id="districtChart"></canvas>
+    </div>
+
+    <script>
+        const data = <%- JSON.stringify(data) %>; // Pass the aggregated data to the frontend
+
+        // Function to prepare chart data by category
+        function prepareChartData(category, field) {
+            const labels = [...new Set(data.map(item => item[category]))];
+            const pending = labels.map(label =>
+                data.filter(item => item[category] === label).reduce((sum, item) => sum + item.statuses.Pending, 0)
+            );
+            const accepted = labels.map(label =>
+                data.filter(item => item[category] === label).reduce((sum, item) => sum + item.statuses.Accepted, 0)
+            );
+            const rejected = labels.map(label =>
+                data.filter(item => item[category] === label).reduce((sum, item) => sum + item.statuses.Rejected, 0)
+            );
+
+            return { labels, pending, accepted, rejected };
+        }
+
+        // State-Level Chart
+        const stateData = prepareChartData("state");
+        new Chart(document.getElementById("stateChart"), {
+            type: "bar",
+            data: {
+                labels: stateData.labels,
+                datasets: [
+                    { label: "Pending", data: stateData.pending, backgroundColor: "orange" },
+                    { label: "Accepted", data: stateData.accepted, backgroundColor: "green" },
+                    { label: "Rejected", data: stateData.rejected, backgroundColor: "red" },
+                ],
+            },
+        });
+
+        // Mandal-Level Chart
+        const mandalData = prepareChartData("mandal");
+        new Chart(document.getElementById("mandalChart"), {
+            type: "bar",
+            data: {
+                labels: mandalData.labels,
+                datasets: [
+                    { label: "Pending", data: mandalData.pending, backgroundColor: "orange" },
+                    { label: "Accepted", data: mandalData.accepted, backgroundColor: "green" },
+                    { label: "Rejected", data: mandalData.rejected, backgroundColor: "red" },
+                ],
+            },
+        });
+
+        // District-Level Chart
+        const districtData = prepareChartData("district");
+        new Chart(document.getElementById("districtChart"), {
+            type: "bar",
+            data: {
+                labels: districtData.labels,
+                datasets: [
+                    { label: "Pending", data: districtData.pending, backgroundColor: "orange" },
+                    { label: "Accepted", data: districtData.accepted, backgroundColor: "green" },
+                    { label: "Rejected", data: districtData.rejected, backgroundColor: "red" },
+                ],
+            },
+        });
+    </script>
+</body>
+</html> -->

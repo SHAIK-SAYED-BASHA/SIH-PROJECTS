@@ -1,0 +1,435 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for EWS Certificate</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(145deg, #ff9f00, #ff6600); /* Gradient background from orange shades */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        h2 {
+            text-align: center;
+            color: white; /* Matching button color */
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        select, input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            font-size: 14px;
+            margin-bottom: 15px;
+            border: 2px solid black;
+        }
+
+        select:hover, input:hover {
+            border-color: #ff6600; /* Hover effect using orange */
+            background-color: #fff0e6;
+        }
+
+        select:focus, input:focus {
+            border-color: #ff6600; /* Focus effect using orange */
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ff6600; /* Button color */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #e65c00; /* Darker orange on hover */
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .form-container {
+                width: 95%;
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            label {
+                font-size: 13px;
+            }
+
+            select, input[type="number"], input[type="text"] {
+                padding: 8px;
+                font-size: 13px;
+            }
+        }
+        .form-container{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <form action="/api/users/apply/ews" method="POST">
+        <h2>Apply for EWS Certificate</h2>
+        <label for="state">State:</label>
+        <select id="state" name="state" required onchange="populateDistricts()">
+            <option value="">Select State</option>
+            <option value="state1">State 1</option>
+            <option value="state2">State 2</option>
+        </select><br><br>
+
+        <label for="district">District:</label>
+        <select id="district" name="district" required onchange="populateMandals()">
+            <option value="">Select District</option>
+        </select><br><br>
+
+        <label for="mandal">Mandal:</label>
+        <select id="mandal" name="mandal" required>
+            <option value="">Select Mandal</option>
+        </select><br><br>
+
+        <label for="village">Village (Optional):</label>
+        <select id="village" name="village">
+            <option value="">Select Village</option>
+        </select><br><br>
+
+        <label for="income">Annual Income:</label>
+        <input type="number" id="income" name="income" required><br><br>
+
+        <label for="address">Permanent Address:</label>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <button type="submit">Apply for EWS Certificate</button>
+    </form>
+
+    <script>
+        // Dynamic Population of Districts, Mandals, and Villages for EWS Certificate Form
+        function populateDistricts() {
+            const state = document.getElementById('state').value;
+            const districtSelect = document.getElementById('district');
+            districtSelect.innerHTML = '<option value="">Select District</option>';
+
+            const districts = state === 'state1' ? ['district1', 'district2'] : ['district3', 'district4'];
+            districts.forEach(district => {
+                const option = document.createElement('option');
+                option.value = district;
+                option.text = district.charAt(0).toUpperCase() + district.slice(1);
+                districtSelect.appendChild(option);
+            });
+        }
+
+        function populateMandals() {
+            const district = document.getElementById('district').value;
+            const mandalSelect = document.getElementById('mandal');
+            mandalSelect.innerHTML = '<option value="">Select Mandal</option>';
+
+            const mandals = district === 'district1' ? ['mandal1', 'mandal2'] : ['mandal3', 'mandal4'];
+            mandals.forEach(mandal => {
+                const option = document.createElement('option');
+                option.value = mandal;
+                option.text = mandal.charAt(0).toUpperCase() + mandal.slice(1);
+                mandalSelect.appendChild(option);
+            });
+
+            // Reset village dropdown
+            document.getElementById('village').innerHTML = '<option value="">Select Village</option>';
+        }
+
+        document.getElementById('mandal').addEventListener('change', function () {
+            const mandal = this.value;
+            const villageSelect = document.getElementById('village');
+            villageSelect.innerHTML = '<option value="">Select Village</option>';
+
+            const villages = mandal === 'mandal1' ? ['village1', 'village2'] : ['village3', 'village4'];
+            villages.forEach(village => {
+                const option = document.createElement('option');
+                option.value = village;
+                option.text = village.charAt(0).toUpperCase() + village.slice(1);
+                villageSelect.appendChild(option);
+            });
+        });
+    </script>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for EWS Certificate</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #9face6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-height: 100vh;
+        color: #333;
+        padding: 20px; /* Added padding for smaller devices */
+    }
+    
+    form {
+        border: 1px solid black;
+        margin: 5vh 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #6878c2, #479183);
+        border-radius: 20px;
+    }
+    
+    .form-container {
+        width: 90%;
+        max-width: 600px;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+    }
+    
+    form h2 {
+        text-align: center;
+        color: rgb(160, 249, 255);
+        font-size: 22px;
+        text-decoration: 1.5px underline;
+        margin-bottom: 20px;
+    }
+    
+    label {
+        font-size: 14px;
+        color: #ffffff;
+        margin-bottom: 5px;
+    }
+    
+    select, input[type="text"], input[type="date"], input[type="number"]{
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    select:hover, input:hover {
+        border-color: #4A90E2;
+        background-color: #eef5ff;
+    }
+    
+    select:focus, input:focus {
+        border-color: #4A90E2;
+        outline: none;
+        box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    }
+    
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #4A90E2;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s ease;
+    }
+    
+    button:hover {
+        background: #357ABD;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        form {
+            margin: 3vh 0;
+            padding: 15px;
+        }
+    
+        .form-container {
+            padding: 20px;
+            gap: 10px;
+        }
+    
+        form h2 {
+            font-size: 20px;
+        }
+    
+        select, input[type="text"], input[type="date"], input[type="number"]{
+            font-size: 13px;
+            padding: 8px;
+        }
+    
+        button {
+            padding: 10px;
+            font-size: 14px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        form {
+            margin: 2vh 0;
+            padding: 10px;
+        }
+    
+        .form-container {
+            padding: 15px;
+            gap: 8px;
+        }
+    
+        form h2 {
+            font-size: 18px;
+        }
+    
+        select, input[type="text"], input[type="date"], input[type="number"] {
+            font-size: 12px;
+            padding: 6px;
+        }
+    
+        button {
+            padding: 8px;
+            font-size: 12px;
+        }
+    }
+    
+    </style>
+</head>
+<body>
+    <form action="/api/users/apply/ews" method="POST">
+        <h2>Apply for EWS Certificate</h2>
+        <label for="state">State:</label>
+        <select id="state" name="state" required onchange="populateDistricts()">
+            <option value="">Select State</option>
+            <option value="state1">State 1</option>
+            <option value="state2">State 2</option>
+        </select><br><br>
+
+        <label for="district">District:</label>
+        <select id="district" name="district" required onchange="populateMandals()">
+            <option value="">Select District</option>
+        </select><br><br>
+
+        <label for="mandal">Mandal:</label>
+        <select id="mandal" name="mandal" required>
+            <option value="">Select Mandal</option>
+        </select><br><br>
+
+        <label for="village">Village (Optional):</label>
+        <select id="village" name="village">
+            <option value="">Select Village</option>
+        </select><br><br>
+
+        <label for="income">Annual Income:</label>
+        <input type="number" id="income" name="income" required><br><br>
+
+        <label for="address">Permanent Address:</label>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <button type="submit">Apply for EWS Certificate</button>
+    </form>
+
+    <script>
+        // Dynamic Population of Districts, Mandals, and Villages for EWS Certificate Form
+        function populateDistricts() {
+            const state = document.getElementById('state').value;
+            const districtSelect = document.getElementById('district');
+            districtSelect.innerHTML = '<option value="">Select District</option>';
+
+            const districts = state === 'state1' ? ['district1', 'district2'] : ['district3', 'district4'];
+            districts.forEach(district => {
+                const option = document.createElement('option');
+                option.value = district;
+                option.text = district.charAt(0).toUpperCase() + district.slice(1);
+                districtSelect.appendChild(option);
+            });
+        }
+
+        function populateMandals() {
+            const district = document.getElementById('district').value;
+            const mandalSelect = document.getElementById('mandal');
+            mandalSelect.innerHTML = '<option value="">Select Mandal</option>';
+
+            const mandals = district === 'district1' ? ['mandal1', 'mandal2'] : ['mandal3', 'mandal4'];
+            mandals.forEach(mandal => {
+                const option = document.createElement('option');
+                option.value = mandal;
+                option.text = mandal.charAt(0).toUpperCase() + mandal.slice(1);
+                mandalSelect.appendChild(option);
+            });
+
+            // Reset village dropdown
+            document.getElementById('village').innerHTML = '<option value="">Select Village</option>';
+        }
+
+        document.getElementById('mandal').addEventListener('change', function () {
+            const mandal = this.value;
+            const villageSelect = document.getElementById('village');
+            villageSelect.innerHTML = '<option value="">Select Village</option>';
+
+            const villages = mandal === 'mandal1' ? ['village1', 'village2'] : ['village3', 'village4'];
+            villages.forEach(village => {
+                const option = document.createElement('option');
+                option.value = village;
+                option.text = village.charAt(0).toUpperCase() + village.slice(1);
+                villageSelect.appendChild(option);
+            });
+        });
+    </script>
+
+</body>
+</html>

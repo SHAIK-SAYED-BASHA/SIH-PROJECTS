@@ -1,0 +1,126 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphical Certificate Status Comparison</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h2 class="my-4 text-center">Certificate Status Comparison Graphs</h2>
+
+    <div class="row">
+         
+        <div class="col-md-6">
+            <h3>State 1</h3>
+            <canvas id="state1Chart"></canvas>
+        </div>
+        
+         
+        <div class="col-md-6">
+            <h3>State 2</h3>
+            <canvas id="state2Chart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const state1Data = <%= JSON.stringify(state1Data) %>;
+        const state2Data = <%= JSON.stringify(state2Data) %>;
+
+         
+        const state1Labels = ['Caste Certificate', 'Income Certificate', 'EWS Certificate'];
+        const state2Labels = ['Caste Certificate', 'Income Certificate', 'EWS Certificate'];
+
+        const state1Status = {
+            pending: [state1Data.caste.pending + state1Data.income.pending + state1Data.ews.pending],
+            accepted: [state1Data.caste.accepted + state1Data.income.accepted + state1Data.ews.accepted],
+            rejected: [state1Data.caste.rejected + state1Data.income.rejected + state1Data.ews.rejected]
+        };
+
+        const state2Status = {
+            pending: [state2Data.caste.pending + state2Data.income.pending + state2Data.ews.pending],
+            accepted: [state2Data.caste.accepted + state2Data.income.accepted + state2Data.ews.accepted],
+            rejected: [state2Data.caste.rejected + state2Data.income.rejected + state2Data.ews.rejected]
+        };
+
+        
+        const ctx1 = document.getElementById('state1Chart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: state1Labels,
+                datasets: [
+                    {
+                        label: 'Pending',
+                        data: state1Status.pending,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Accepted',
+                        data: state1Status.accepted,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Rejected',
+                        data: state1Status.rejected,
+                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+         
+        const ctx2 = document.getElementById('state2Chart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: state2Labels,
+                datasets: [
+                    {
+                        label: 'Pending',
+                        data: state2Status.pending,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Accepted',
+                        data: state2Status.accepted,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Rejected',
+                        data: state2Status.rejected,
+                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+</div>
+
+</body>
+</html> -->
